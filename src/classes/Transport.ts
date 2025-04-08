@@ -40,7 +40,8 @@ export class AxiosTransport implements Transport {
     const response = await axios.get<T>(this.url, {
       ...this.options,
       headers: {
-        'User-Agent': ''
+        'User-Agent': '',
+        'Ok-Access-Key': apikey
       },
       params: {
         apikey,
@@ -63,7 +64,8 @@ export class AxiosTransport implements Transport {
         ...params
       },
       headers: {
-        'User-Agent': ''
+        'User-Agent': '',
+        'Ok-Access-Key': apikey
       }
     });
 
