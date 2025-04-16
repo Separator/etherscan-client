@@ -4,8 +4,10 @@ import { Chain } from './types/chain';
 
 import * as Accounts from './types/accounts';
 import * as Blocks from './types/blocks';
+
 import * as Parameter from './types/params';
 import * as Transactions from './types/transactions';
+import * as GethParityProxy from './types/geth-parity-proxy';
 
 export {
   // Chains:
@@ -18,5 +20,6 @@ export {
   Accounts,
   Blocks,
   Parameter,
-  Transactions
+  Transactions,
+  GethParityProxy
 };
