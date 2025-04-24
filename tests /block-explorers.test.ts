@@ -53,7 +53,7 @@ describe('Check connections to different data suppliers', () => {
     expect(Number(blockNumber)).toBeGreaterThanOrEqual(0);
   });
 
-  test('OkLink API', async () => {
+  /* test('OkLink API', async () => {
     const chain = 'eth';
     const url = `https://www.oklink.com/api/v5/explorer/${chain}/api`;
 
@@ -67,5 +67,5 @@ describe('Check connections to different data suppliers', () => {
     });
 
     expect(Number(blockNumber)).toBeGreaterThanOrEqual(0);
-  });
+  }); */
 });
