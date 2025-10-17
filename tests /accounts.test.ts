@@ -14,6 +14,14 @@ const timeout = Number(TEST_TIMEOUT);
 const blockExplorer = new Client({ chainid, apikey });
 
 describe('Check functions from Accounts block', () => {
+  test('Get Ether Balance for a Single Address', async () => {
+    await sleep();
+    const balance = await blockExplorer.getAccountBalance({
+      address: WALLET
+    });
+    expect(balance).toBeDefined();
+  });
+
   test(
     "Get a list of 'normal' transactions by address",
     async () => {

@@ -45,6 +45,12 @@ const TOKEN_ADDRESS = 'token_address';
 
 const client = new Client({ chainid: Chain.EthereumMainnet, apikey: API_KEY });
 
+// Get Ether Balance for a Single Address:
+const balance = await blockExplorer.getAccountBalance({
+  address: WALLET
+});
+console.log(balance);
+
 // Get a list of 'Normal' Transactions By Address:
 const normalTxsList = await blockExplorer.getNormalTxListByAddress({
   address: WALLET
