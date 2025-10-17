@@ -9,6 +9,8 @@ import { BlockNumberByTimestampOptions, BlockNumberByTimestampResponse } from '.
 import {
   Erc20TokenTransferEventsListOptions,
   Erc20TokenTransferEventsListResponse,
+  EtherBalanceForSingleAddressOptions,
+  EtherBalanceForSingleAddressResponse,
   NormalTxListByAddressOptions,
   NormalTxListByAddressResponse
 } from '../types/accounts';
@@ -41,6 +43,7 @@ import {
   EthUncleByBlockNumberAndIndexResponse,
   RpcResponseCommon
 } from '../types/geth-parity-proxy';
+import { Erc20TokenAccountBalanceOptions, Erc20TokenAccountBalanceResponse } from '../types/tokens';
 
 // Error messages:
 const TX_NO_FOUND_MESSAGE = 'No transactions found';
@@ -105,6 +108,20 @@ export class Client {
    */
 
   /**
+   * Get Ether Balance for a Single Address
+   * @param options EtherBalanceForSingleAddressOptions
+   * @returns Returns the Ether balance of a given address
+   */
+  public async getAccountBalance(options: EtherBalanceForSingleAddressOptions) {
+    const response = await this.transport.get<EtherBalanceForSingleAddressResponse>({
+      ...options,
+      module: Module.Account,
+      action: Action.Balance
+    });
+    return this._checkResponseStatus<EtherBalanceForSingleAddressResponse>(response, options);
+  }
+
+  /**
    * Get a list of 'Normal' Transactions By Address
    * https://docs.etherscan.io/etherscan-v2/api-endpoints/accounts#get-a-list-of-normal-transactions-by-address
    * @param options
@@ -120,6 +137,11 @@ export class Client {
     return this._checkResponseStatus<NormalTxListByAddressResponse>(response, options);
   }
 
+  /**
+   * Get a list of 'ERC20 - Token Transfer Events' by Address
+   * @param options Erc20TokenTransferEventsListOptions
+   * @returns Returns the list of ERC-20 tokens transferred by an address, with optional filtering by token contract
+   */
   public async getErc20TokenTransferEventsList(options: Erc20TokenTransferEventsListOptions) {
     const response = await this.transport.get<Erc20TokenTransferEventsListResponse>({
       ...options,
@@ -130,6 +152,16 @@ export class Client {
     return this._checkResponseStatus(response, options);
   }
 
+  /**
+   * Blocks
+   * https://docs.etherscan.io/api-endpoints/blocks
+   */
+
+  /**
+   * Get Block Number by Timestamp
+   * @param options BlockNumberByTimestampOptions
+   * @returns Returns the block number that was mined at a certain timestamp
+   */
   public async getBlockNumberByTimestamp(options: BlockNumberByTimestampOptions) {
     const { closest = Closest.After, timestamp } = options;
 
@@ -353,5 +385,20 @@ export class Client {
     });
 
     return this._checkRpcResponseStatus(response);
+  }
+
+  /**
+   * Tokens
+   * https://docs.etherscan.io/api-endpoints/tokens
+   */
+
+  public async getAccountTokenBalance(options: Erc20TokenAccountBalanceOptions) {
+    const response = await this.transport.get<Erc20TokenAccountBalanceResponse>({
+      ...options,
+      module: Module.Account,
+      action: Action.TokenBalance
+    });
+
+    return this._checkResponseStatus(response);
   }
 }

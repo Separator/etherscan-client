@@ -1,6 +1,28 @@
+import { Tag } from './params';
 import { ResponseCommon } from './response';
 import { Erc20TokenTransferEvent, Transaction } from './transactions';
 import { BlockOptions, PaginationOptions } from './options';
+
+// ----------------------------------------------------------------------------------------------------
+
+export interface EtherBalanceForSingleAddressOptions {
+  /**
+   * @description The **string** representing the address to check for balance
+   */
+  address: string;
+  /**
+   * @description The string pre-defined block parameter, either **earliest**, **pending** or **latest**
+   */
+  tag?: Tag;
+}
+
+export interface EtherBalanceForSingleAddressResponse extends ResponseCommon {
+  /**
+   * @description The string representing the balance in Wei
+   * @example '40891626854930000000000'
+   */
+  result: string;
+}
 
 // ----------------------------------------------------------------------------------------------------
 

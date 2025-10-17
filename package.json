@@ -1,17 +1,19 @@
 {
   "name": "etherscan-client",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Separator/etherscan-client.git"
   },
   "description": "A set of classes to work with etherscan-compatible blockchain observers",
   "keywords": [
-    "api",
     "ether",
-    "etherscan",
-    "currency",
     "blockchain",
+    "etherscan",
+    "routescan",
+    "oklink",
+    "api",
+    "currency",
     "cryptocurrency"
   ],
   "author": "Separator",
