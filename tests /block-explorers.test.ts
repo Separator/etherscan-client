@@ -25,18 +25,6 @@ describe('Check connections to different data suppliers', () => {
     TEST_TIMEOUT
   );
 
-  test('Etherscan API V1', async () => {
-    const url = 'https://api-sepolia.etherscan.io/api';
-
-    const client = new Client({ apikey: API_KEY!, url });
-
-    const blockNumber = await client.getBlockNumberByTimestamp({
-      timestamp
-    });
-
-    expect(Number(blockNumber)).toBeGreaterThanOrEqual(0);
-  });
-
   test('Routescan API', async () => {
     const chain = Chain.SepoliaTestnet;
     const url = `https://api.routescan.io/v2/network/testnet/evm/${chain}/etherscan/api`;

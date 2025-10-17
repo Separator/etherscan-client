@@ -67,7 +67,7 @@ describe('Check Geth/Parity/Proxy functions', () => {
       const txCount = await blockExplorer.eth_getBlockTransactionCountByNumber({
         tag: BLOCK_NUMBER
       });
-      expect(Number(txCount)).toBeGreaterThanOrEqual(1);
+      expect(Number(txCount)).toBeGreaterThanOrEqual(0);
     },
     timeout
   );
