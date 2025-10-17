@@ -180,3 +180,19 @@ const gas = await blockExplorerEth.eth_estimateGas({
 });
 console.log(gas);
 ```
+
+## [Tokens section](https://docs.etherscan.io/api-endpoints/tokens)
+
+```javascript
+import { Client, Chain } from 'etherscan-client';
+
+const API_KEY = 'your_api_key';
+
+const client = new Client({ chainid: Chain.EthereumMainnet, apikey: API_KEY });
+
+const tokenBalance = await client.getAccountTokenBalance({
+  contractaddress: TOKEN_ADDRESS,
+  address: WALLET
+});
+console.log(blockNumber);
+```

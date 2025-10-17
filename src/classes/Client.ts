@@ -43,6 +43,7 @@ import {
   EthUncleByBlockNumberAndIndexResponse,
   RpcResponseCommon
 } from '../types/geth-parity-proxy';
+import { Erc20TokenAccountBalanceOptions, Erc20TokenAccountBalanceResponse } from '../types/tokens';
 
 // Error messages:
 const TX_NO_FOUND_MESSAGE = 'No transactions found';
@@ -384,5 +385,20 @@ export class Client {
     });
 
     return this._checkRpcResponseStatus(response);
+  }
+
+  /**
+   * Tokens
+   * https://docs.etherscan.io/api-endpoints/tokens
+   */
+
+  public async getAccountTokenBalance(options: Erc20TokenAccountBalanceOptions) {
+    const response = await this.transport.get<Erc20TokenAccountBalanceResponse>({
+      ...options,
+      module: Module.Account,
+      action: Action.TokenBalance
+    });
+
+    return this._checkResponseStatus(response);
   }
 }
