@@ -12,7 +12,9 @@ import {
   EtherBalanceForSingleAddressOptions,
   EtherBalanceForSingleAddressResponse,
   NormalTxListByAddressOptions,
-  NormalTxListByAddressResponse
+  NormalTxListByAddressResponse,
+  InternalTxListByAddressOptions,
+  InternalTxListByAddressResponse
 } from '../types/accounts';
 import {
   EthBlockByNumberOptions,
@@ -135,6 +137,22 @@ export class Client {
     });
 
     return this._checkResponseStatus<NormalTxListByAddressResponse>(response, options);
+  }
+
+  /**
+   * Get a list of 'Internal' Transactions By Address
+   * https://docs.etherscan.io/api-reference/endpoint/txlistinternal
+   * @param options InternalTxListByAddressOptions
+   * @returns List of internal txs
+   */
+  public async getInternalTxListByAddress(options: InternalTxListByAddressOptions) {
+    const response = await this.transport.get<InternalTxListByAddressResponse>({
+      ...options,
+      module: Module.Account,
+      action: Action.TxListInternal
+    });
+
+    return this._checkResponseStatus<InternalTxListByAddressResponse>(response, options);
   }
 
   /**

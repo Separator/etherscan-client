@@ -158,6 +158,27 @@ export interface Erc20TokenTransferEvent extends TxCommon {
   tokenDecimal: string;
 }
 
+/**
+ * Internal transaction type (from txlistinternal endpoint)
+ */
+export interface InternalTransaction extends TxCommon {
+  /**
+   * @description Internal tx type (e.g. 'create', 'call')
+   * @example 'create'
+   */
+  type: string;
+  /**
+   * @description Trace identifier
+   * @example '0'
+   */
+  traceId: string;
+  /**
+   * @description Error code string, empty if no error
+   * @example ''
+   */
+  errCode: string;
+}
+
 export interface BlockTransaction extends TxCore {
   /**
    * @description Block hash

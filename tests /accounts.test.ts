@@ -35,6 +35,18 @@ describe('Check functions from Accounts block', () => {
   );
 
   test(
+    "Get a list of 'internal' transactions by address",
+    async () => {
+      await sleep();
+      const txs = await blockExplorer.getInternalTxListByAddress({
+        address: WALLET
+      });
+      expect(txs.length).toBeGreaterThanOrEqual(0);
+    },
+    timeout
+  );
+
+  test(
     `Get a list of 'ERC20 - token transfer events' by address`,
     async () => {
       await sleep();
