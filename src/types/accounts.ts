@@ -1,6 +1,6 @@
 import { Tag } from './params';
 import { ResponseCommon } from './response';
-import { Erc20TokenTransferEvent, Transaction } from './transactions';
+import { Erc20TokenTransferEvent, Transaction, InternalTransaction } from './transactions';
 import { BlockOptions, PaginationOptions } from './options';
 
 // ----------------------------------------------------------------------------------------------------
@@ -61,4 +61,21 @@ export interface Erc20TokenTransferEventsListResponse extends ResponseCommon {
    * @description List of ERC-20 tokens transferred by an address
    */
   result: Erc20TokenTransferEvent[];
+}
+
+// ----------------------------------------------------------------------------------------------------
+
+export interface InternalTxListByAddressOptions extends PaginationOptions, BlockOptions {
+  /**
+   * @description The string representing the addresses to get corresponding internal txs
+   * @example '0x2c1ba59d6f58433fb1eaee7d20b26ed83bda51a3'
+   */
+  address: string;
+}
+
+export interface InternalTxListByAddressResponse extends ResponseCommon {
+  /**
+   * @description List of internal tx objects
+   */
+  result: InternalTransaction[];
 }

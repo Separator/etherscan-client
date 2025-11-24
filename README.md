@@ -57,6 +57,12 @@ const normalTxsList = await blockExplorer.getNormalTxListByAddress({
 });
 console.log(normalTxsList);
 
+// Get a list of 'Internal' Transactions By Address:
+const internalTxsList = await blockExplorer.getInternalTxListByAddress({
+  address: WALLET
+});
+console.log(internalTxsList);
+
 const erc20TokenEvtList = await client.getErc20TokenTransferEventsList({
   address: WALLET,
   contractaddress: TOKEN_ADDRESS
